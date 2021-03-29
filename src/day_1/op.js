@@ -4,15 +4,12 @@ class Pair {
     this.data = data
   }
 
-  calculate() {
+  calculate(selector) {
     try {
       for (let i = 0; i < this.data.length; i++) {
-        for (let j = 0; j < this.data.length; j++) {
-          const intI = Number(this.data[i])
-          const intJ = Number(this.data[j])
-          if (intI + intJ === 2020) {
-            return intI * intJ
-          }
+        const intI = Number(this.data[i])
+        if (this.data.includes(selector - intI)) {
+          return intI * (selector - intI)
         }
       }
     } catch (error) {
@@ -20,6 +17,21 @@ class Pair {
     }
   }
 
+  calculate_two(selector) {
+    try {
+      for (let i = 0; i < this.data.length; i++) {
+        for (let j = 0; j < this.data.length; j++) {
+          const intJ = Number(this.data[j])
+          const intI = Number(this.data[i])
+          if (this.data.includes(selector - intI - intJ)) {
+            return intI * intJ * (selector - intI - intJ)
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error while calculating; ', error.message || error)
+    }
+  }
 }
 
 module.exports = Pair

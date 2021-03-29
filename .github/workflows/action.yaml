@@ -1,0 +1,10 @@
+on: push
+name: Solution tests
+jobs:
+  runNpmTarget:
+    name: Run NPM tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run NPM tests
+      uses: anna-money/github-actions-npm@v2

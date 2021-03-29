@@ -1,7 +1,7 @@
 
 const { assert } = require('chai')
 const Validator = require('../../src/day_2/validator.js')
-describe('Day 1', () => {
+describe('Day 2', () => {
   describe('Validator', () => {
     const data = require('./mock.js')
     const validator = new Validator(data)

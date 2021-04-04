@@ -3,13 +3,13 @@ class Validator {
   constructor(data) {
     this.fields = data
     this.required = {
-      'ecl': (value) => { return value < 1900 && value > 2020 },
-      'pid': (value) => { return value.length === 9 && value.filter(char => !isNaN(char)).length === 9 },
-      'eyr': (value) => { return value >= 2020 && value <= 2030 },
-      'hcl': (value) => { return /^#[0-9]?[a-f]/.test(value) },
-      'byr': (value) => { return value >= 1920 && value <= 2002 },
-      'iyr': (value) => { return value >= 2010 && value <= 2020 },
-      'hgt': (value) => { return value.includes('cm') ? Number(value.split('cm')[0]) >= 150 && Number(value.split('cm')[0]) <= 193 : value.includes('in')[0] ? Number(value.split('in')[0]) >= 59 && Number(value.split('in')[0]) <= 76 : false }
+      'ecl': (value) => { return value === 'amb' ||  value === 'blu' ||  value === 'brn' ||  value === 'gry' ||  value === 'grn' ||  value === 'hzl' ||  value === 'oth' },
+      'pid': (value) => { return /^\d{9}$/.test(value) },
+      'eyr': (value) => { return Number(value) >= 2020 && Number(value) <= 2030 },
+      'hcl': (value) => { return /^#(\d{6}|[a-f]{6})$/.test(value) },
+      'byr': (value) => { return Number(value) >= 1920 && Number(value) <= 2002 },
+      'iyr': (value) => { return Number(value) >= 2010 && Number(value) <= 2020 },
+      'hgt': (value) => { return value.includes('cm') ? Number(value.split('cm')[0]) >= 150 && Number(value.split('cm')[0]) <= 193 : value.includes('in') ? Number(value.split('in')[0]) >= 59 && Number(value.split('in')[0]) <= 76 : false }
     }
     this.optional = [
       'cid'

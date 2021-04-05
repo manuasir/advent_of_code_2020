@@ -32,6 +32,20 @@ describe('Day 5', () => {
       const result = tree.getRow(rows[3],'0-127',0)
       expect(result).toEqual(102)
     })
-
+    test('Column should be 7', () => {
+      const tree = new BinTree()
+      const result = tree.getColumn(rows[1],'0-7',0)
+      expect(result).toEqual(7)
+    })
+    test('Column should be 7', () => {
+      const tree = new BinTree()
+      const result = tree.getColumn(rows[2],'0-7',0)
+      expect(result).toEqual(7)
+    })
+    test('Column should be 4', () => {
+      const tree = new BinTree()
+      const result = tree.getColumn(rows[3],'0-7',0)
+      expect(result).toEqual(4)
+    })
   })
 })

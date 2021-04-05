@@ -1,5 +1,5 @@
 
-const { assert } = require('chai')
+
 const Loader = require('../../src/day_3/loader.js')
 const Location = require('../../src/day_3/location.js')
 
@@ -10,13 +10,13 @@ describe('Day 3', () => {
   const location = new Location(result)
   describe('Loader', () => {
     it('Number of rows', () => {
-      assert.equal(result.length, 11)
+      expect(result.length).toEqual(11)
     })
     it('First row first character', () => {
-      assert.equal(result[0][0], '.')
+      expect(result[0][0]).toEqual('.')
     })
     it('Last row last character', () => {
-      assert.equal(result[result.length - 1][result.length - 1], '#')
+      expect(result[result.length - 1][result.length - 1]).toEqual('#')
     })
   })
   describe('Locations', () => {
@@ -24,23 +24,23 @@ describe('Day 3', () => {
       it('It should return 2 trees', () => {
 
         const numberOfTrees = location.process(0, 0, 1, 1)
-        assert.equal(numberOfTrees, 2)
+        expect(numberOfTrees).toEqual(2)
       })
       it('It should return 7 trees', () => {
         const numberOfTrees = location.process(0, 0, 1, 3)
-        assert.equal(numberOfTrees, 7)
+        expect(numberOfTrees).toEqual(7)
       })
       it('It should return 3 trees', () => {
         const numberOfTrees = location.process(0, 0, 1, 5)
-        assert.equal(numberOfTrees, 3)
+        expect(numberOfTrees).toEqual(3)
       })
       it('It should return 4 trees', () => {
         const numberOfTrees = location.process(0, 0, 1, 7)
-        assert.equal(numberOfTrees, 4)
+        expect(numberOfTrees).toEqual(4)
       })
       it('It should return 2 trees', () => {
         const numberOfTrees = location.process(0, 0, 2, 1)
-        assert.equal(numberOfTrees, 2)
+        expect(numberOfTrees).toEqual(2)
       })
     })
     describe('Probability product', () => {
@@ -53,7 +53,7 @@ describe('Day 3', () => {
           [2, 1]
         ]
         const product = location.sum(arr)
-        assert.equal(product, 336)
+        expect(product).toEqual(336)
       })
     })
   })

@@ -1,5 +1,5 @@
 
-const { assert } = require('chai')
+
 const Loader = require('../../src/day_4/loader.js')
 const Validator = require('../../src/day_4/validator.js')
 
@@ -10,24 +10,24 @@ describe('Day 4', () => {
   const validator = new Validator(rows)
   describe('Loader', () => {
     it('Number of rows', () => {
-      assert.equal(rows.length, 12)
+      expect(rows.length).toEqual(12)
     })
     describe('Field extractor', () => {
       it('Line 1 should have 7 fields', () => {
         const fields = validator.getFields(rows[0])
-        assert.equal(fields.length, 8)
+        expect(fields.length).toEqual(8)
       })
       it('0 should be a valid row', () => {
         const fields = validator.getFields(rows[0])
-        assert.equal(validator.checkFields(fields), true)
+        expect(validator.checkFields(fields)).toEqual(true)
       })
       it('Line 3 should have 7 fields', () => {
         const fields = validator.getFields(rows[2])
-        assert.equal(fields.length, 7)
+        expect(fields.length).toEqual(7)
       })
       it('1 should be an invalid row', () => {
         const fields = validator.getFields(rows[1])
-        assert.equal(validator.checkFields(fields), false)
+        expect(validator.checkFields(fields)).toEqual(false)
       })
     })
     describe('Constraints', () => {
@@ -35,149 +35,149 @@ describe('Day 4', () => {
         const fields = validator.getRequired()
         const field = fields['ecl']
         const mock = "blu"
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[ecl] It should be invalid', () => {
         const fields = validator.getRequired()
         const field = fields['ecl']
         const mock = "pink"
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[byr] It should be valid', () => {
         const fields = validator.getRequired()
         const field = fields['byr']
         const mock = 1921
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[byr] It should be invalid', () => {
         const fields = validator.getRequired()
         const field = fields['byr']
         const mock = 2003
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[iyr] It should be valid', () => {
         const fields = validator.getRequired()
         const field = fields['iyr']
         const mock = 2015
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[iyr] It should be invalid', () => {
         const fields = validator.getRequired()
         const field = fields['iyr']
         const mock = 2022
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[eyr] It should be valid', () => {
         const fields = validator.getRequired()
         const field = fields['eyr']
         const mock = 2020
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[eyr] It should be invalid', () => {
         const fields = validator.getRequired()
         const field = fields['eyr']
         const mock = 2040
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[hgt - cm] It should be valid', () => {
         const fields = validator.getRequired()
         const field = fields['hgt']
         const mock = "160cm"
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[hgt - cm] It should be invalid', () => {
         const fields = validator.getRequired()
         const field = fields['hgt']
         const mock = "149cm"
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[hgt - in] It should be valid', () => {
         const fields = validator.getRequired()
         const field = fields['hgt']
         const mock = "60in"
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[hgt - in] It should be invalid', () => {
         const fields = validator.getRequired()
         const field = fields['hgt']
         const mock = "77in"
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[hcl] It should be valid', () => {
         const fields = validator.getRequired()
         const field = fields['hcl']
         const mock = "#123456"
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[hcl] It should be valid', () => {
         const fields = validator.getRequired()
         const field = fields['hcl']
         const mock = "#aaaaaa"
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[hcl] It should be invalid', () => {
         const fields = validator.getRequired()
         const field = fields['hcl']
         const mock = "#111"
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[hcl] It should be invalid #zzz', () => {
         const fields = validator.getRequired()
         const field = fields['hcl']
         const mock = "#zzzzzz"
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[hcl] It should be invalid #9999999', () => {
         const fields = validator.getRequired()
         const field = fields['hcl']
         const mock = "#9999999"
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[hcl] It should be invalid #abcdek', () => {
         const fields = validator.getRequired()
         const field = fields['hcl']
         const mock = "#abcdek"
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
       it('[pid] It should be valid', () => {
         const fields = validator.getRequired()
         const field = fields['pid']
         const mock = "000011119"
-        assert.equal(field(mock), true)
+        expect(field(mock)).toEqual(true)
       })
       it('[pid] It should be invalid', () => {
         const fields = validator.getRequired()
         const field = fields['pid']
         const mock = "9999999999"
-        assert.equal(field(mock), false)
+        expect(field(mock)).toEqual(false)
       })
     })
     describe('Valid values', () => {
       it('Values of first row should be valid', () => {
-        assert.equal(validator.checkValues(rows[0]), true)
+        expect(validator.checkValues(rows[0])).toEqual(true)
       })
       it('Values of second row should be invalid', () => {
-        assert.equal(validator.checkValues(rows[4]), false)
+        expect(validator.checkValues(rows[4])).toEqual(false)
       })
       it('Values of second row should be invalid', () => {
-        assert.equal(validator.checkValues(rows[5]), false)
+        expect(validator.checkValues(rows[5])).toEqual(false)
       })
       it('Values of second row should be invalid', () => {
-        assert.equal(validator.checkValues(rows[6]), false)
+        expect(validator.checkValues(rows[6])).toEqual(false)
       })
     })
     describe('Valid values', () => {
       it('Values of row should be valid', () => {
-        assert.equal(validator.checkValues(rows[8]), true)
+        expect(validator.checkValues(rows[8])).toEqual(true)
       })
       it('Values of row should be valid', () => {
-        assert.equal(validator.checkValues(rows[9]), true)
+        expect(validator.checkValues(rows[9])).toEqual(true)
       })
       it('Values of row should be valid', () => {
-        assert.equal(validator.checkValues(rows[10]), true)
+        expect(validator.checkValues(rows[10])).toEqual(true)
       })
       it('Values of row should be valid', () => {
-        assert.equal(validator.checkValues(rows[11]), true)
+        expect(validator.checkValues(rows[11])).toEqual(true)
       })
     })
   })

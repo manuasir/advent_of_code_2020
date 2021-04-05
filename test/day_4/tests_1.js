@@ -6,27 +6,27 @@ const Validator = require('../../src/day_4/validator.js')
 describe('Day 4', () => {
   const loader = new Loader()
   const path = './test/day_4/mock.txt'
-  const result = loader.load(path)
-  const validator = new Validator(result)
+  const rows = loader.load(path)
+  const validator = new Validator(rows)
   describe('Loader', () => {
     it('Number of rows', () => {
-      assert.equal(result.length, 4)
+      assert.equal(rows.length, 12)
     })
     describe('Field extractor', () => {
       it('Line 1 should have 7 fields', () => {
-        const fields = validator.getFields(result[0])
+        const fields = validator.getFields(rows[0])
         assert.equal(fields.length, 8)
       })
       it('0 should be a valid row', () => {
-        const fields = validator.getFields(result[0])
+        const fields = validator.getFields(rows[0])
         assert.equal(validator.checkFields(fields), true)
       })
       it('Line 3 should have 7 fields', () => {
-        const fields = validator.getFields(result[2])
+        const fields = validator.getFields(rows[2])
         assert.equal(fields.length, 7)
       })
       it('1 should be an invalid row', () => {
-        const fields = validator.getFields(result[1])
+        const fields = validator.getFields(rows[1])
         assert.equal(validator.checkFields(fields), false)
       })
     })
@@ -150,6 +150,34 @@ describe('Day 4', () => {
         const field = fields['pid']
         const mock = "9999999999"
         assert.equal(field(mock), false)
+      })
+    })
+    describe('Valid values', () => {
+      it('Values of first row should be valid', () => {
+        assert.equal(validator.checkValues(rows[0]), true)
+      })
+      it('Values of second row should be invalid', () => {
+        assert.equal(validator.checkValues(rows[4]), false)
+      })
+      it('Values of second row should be invalid', () => {
+        assert.equal(validator.checkValues(rows[5]), false)
+      })
+      it('Values of second row should be invalid', () => {
+        assert.equal(validator.checkValues(rows[6]), false)
+      })
+    })
+    describe('Valid values', () => {
+      it('Values of row should be valid', () => {
+        assert.equal(validator.checkValues(rows[8]), true)
+      })
+      it('Values of row should be valid', () => {
+        assert.equal(validator.checkValues(rows[9]), true)
+      })
+      it('Values of row should be valid', () => {
+        assert.equal(validator.checkValues(rows[10]), true)
+      })
+      it('Values of row should be valid', () => {
+        assert.equal(validator.checkValues(rows[11]), true)
       })
     })
   })

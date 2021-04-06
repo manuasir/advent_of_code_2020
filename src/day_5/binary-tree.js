@@ -28,6 +28,10 @@ class BinaryTree {
       return this.getColumn(label, nextRange, index+=1)
     }
   }
+
+  getSeat(label){
+    return this.getRow(label,'0-127',0) * 8 + this.getColumn(label,'0-7',0)
+  }
 }
 
 module.exports = BinaryTree

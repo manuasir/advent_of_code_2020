@@ -6,3 +6,4 @@ const result = loader.load(path)
 const questions = new Questions(result)
 
 console.log("First problem: ",questions.countAllAnswers())
+console.log("Second problem: ",questions.getAllIntersections())

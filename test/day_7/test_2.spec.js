@@ -66,5 +66,12 @@ describe('Day 7', () => {
         ]
       })
     })
+    test('Get a bag without bags inside', () => {
+      const bag = new Bag("drab brown bags contain no other bags.")
+      const result = bag.parseData()
+      expect(result).toMatchObject({
+        type: 'drab brown', bags: []
+      })
+    })
   })
 })

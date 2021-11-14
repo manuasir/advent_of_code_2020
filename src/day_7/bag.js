@@ -8,7 +8,7 @@ class Bag {
   /**
    * Validates input format
    * @param {String} specs
-   * @returns 
+   * @returns
    */
   validate(specs) {
     if (!specs.includes('bags contain')) {
@@ -18,16 +18,23 @@ class Bag {
   }
 
   parseData() {
+    if (this.specs.includes('no other bags.')) {
+      const splitted = this.specs.split(' ')
+      return {
+        type: `${splitted[0]} ${splitted[1]}`,
+        bags: []
+      }
+    }
     const r = /^(\w+\s\w+)\sbags\scontain\s(\d)\s(\w+\s\w+)\s(bags?)(\.?\,?\s?\s?(\d?)\s?(\w+?\s?\w+?)?\s?(bags?))?\,?(\s?\s?(\d?)\s?(\w+?\s?\w+?)?\s?(bags?))?\,?(\s?\s?(\d?)\s?(\w+?\s?\w+?)?\s?(bags?))?\.$/
     const regEx = new RegExp(r)
     const tmp = this.specs.match(regEx)
+    if (!tmp) {
+      throw new Error('Cannot parse data.')
+    }
     const data = tmp.filter((item, index) => item !== 'bags' && item !== 'bag' && item !== '' && !!item && !item.startsWith(',') && !item.startsWith(' '))
     const bags = []
     let temp = []
     for (let i = 2; i < data.length; i += 2) {
-      if (data[i] === '') {
-        break
-      }
       temp.push(data[i])
       temp.push(data[i + 1])
       bags.push(temp)

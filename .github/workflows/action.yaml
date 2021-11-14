@@ -2,9 +2,9 @@ on: push
 name: Solution tests
 jobs:
   runNpmTarget:
-    name: Run NPM tests
+    name: Run yarn tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Run NPM tests
+    - name: Run jest tests
       uses: anna-money/github-actions-npm@v2

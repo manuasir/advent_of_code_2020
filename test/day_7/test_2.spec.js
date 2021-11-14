@@ -48,5 +48,23 @@ describe('Day 7', () => {
         ]
       })
     })
+    test('Get formatted several bags', () => {
+      const bag = new Bag("dim beige bags contain 5 striped red bags, 1 pale orange bag.")
+      const result = bag.parseData()
+      expect(result).toMatchObject({
+        type: 'dim beige', bags: [
+          ["5", 'striped red'], ["1", 'pale orange']
+        ]
+      })
+    })
+    test('Get formatted several bags', () => {
+      const bag = new Bag("clear orange bags contain 1 striped lavender bag, 5 drab blue bags, 5 dim fuchsia bags.")
+      const result = bag.parseData()
+      expect(result).toMatchObject({
+        type: 'clear orange', bags: [
+          ["1", 'striped lavender'], ["5", 'drab blue'], ["5", 'dim fuchsia']
+        ]
+      })
+    })
   })
 })

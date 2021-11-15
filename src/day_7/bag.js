@@ -2,7 +2,7 @@ class Bag {
   constructor(specs) {
     this.validate(specs)
     this.specs = specs
-    this.splittedValues = []
+    this.props = this.parseData()
   }
 
   /**
@@ -47,18 +47,12 @@ class Bag {
     }
   }
 
-  /**
-   * Gets the bag in JSON format
-   * @returns {Object}
-   */
-  format() {
-    return {
-      [this.specs.type]: this.specs.contain
-    }
+  getBags() {
+    return this.props.bags
   }
 
   getType() {
-    return this.data.map(bag => bag.specs.type)
+    return this.props.type
   }
 }
 

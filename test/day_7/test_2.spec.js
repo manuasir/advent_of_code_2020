@@ -2,10 +2,15 @@
 
 const Loader = require('../../src/day_7/loader.js')
 const Bag = require('../../src/day_7/bag.js')
+const Bags = require('../../src/day_7/bags.js')
+
 describe('Day 7', () => {
   const loader = new Loader()
   const path = './test/day_7/mock_bags.txt'
+  const finalRawData = './src/day_7/data'
   const result = loader.load(path)
+  const finalData = loader.load(finalRawData)
+
   describe('Loader', () => {
     test('Number of rows', () => {
       expect(result.length).toEqual(7)
@@ -74,4 +79,42 @@ describe('Day 7', () => {
       })
     })
   })
+  describe('Bags class', () => {
+    const bags = new Bags(Bag, result)
+    bags.load()
+    test('Create correct object', () => {
+      expect(bags instanceof Bags).toEqual(true)
+    })
+    test('Get total bags', () => {
+      expect(bags.total()).toEqual(7)
+    })
+    test('Get bag by type', () => {
+      expect(bags.getBagByType('dark green') instanceof Bag).toEqual(true)
+    })
+    test('Get bag by type', () => {
+      expect(bags.getBagByType('dark green').getType()).toEqual('dark green')
+    })
+    test('Get bags of bag', () => {
+      expect(Array.isArray(bags.getBagByType('dark green').getBags())).toEqual(true)
+      expect(bags.getBagByType('dark green').getBags().length).toEqual(1)
+      expect(bags.getBagByType('dark green').getBags()).toMatchObject(
+        [
+          ["2", 'dark blue']
+        ]
+      )
+    })
+    describe('Bags algorithm', () => {
+      test('Sum should be 126', () => {
+        expect(bags.sumQuantities('shiny gold')).toEqual(126)
+      })
+    })
+    describe('Final algorithm', () => {
+      test('Checking algorithm with full data', () => {
+        const bags = new Bags(Bag, finalData)
+        bags.load()
+        expect(bags.sumQuantities('shiny gold')).toEqual(6006)
+      })
+    })
+  })
+
 })
